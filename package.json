@@ -1,0 +1,15 @@
+{
+  "name": "cursor-universal-template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "cursor": "tsx scripts/cursor-cli.ts"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "@cursor/sdk": "^1.0.12",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

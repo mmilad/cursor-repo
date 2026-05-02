@@ -1,0 +1,8 @@
+{
+  "name": "example-managed-project",
+  "description": "Human-readable summary of what this slot orchestrates.",
+  "gitUrl": "https://github.com/org/upstream-repo.git",
+  "defaultBranch": "main",
+  "sharedTemplates": ["shared.planner.v1", "planning.v1"],
+  "notes": "Optional: path to checkout relative to this folder, e.g. work/"
+}
