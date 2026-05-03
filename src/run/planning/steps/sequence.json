@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "id": "needs",
+      "order": 1,
+      "title": "Needs and scope",
+      "description": "Clarify required outcomes, in-scope vs out-of-scope, and unknowns.",
+      "templateId": "planning.v1",
+      "instructionsFile": "needs.md",
+      "variableTemplates": {
+        "goal": "{goal}",
+        "context": "## Background\n{context}\n\n## Constraints\n{constraints}\n\n## Repository / scope hint\n{repo}"
+      }
+    },
+    {
+      "id": "affected",
+      "order": 2,
+      "title": "Affected areas",
+      "description": "Systems, modules, APIs, data, and users impacted by the change.",
+      "templateId": "planning.v1",
+      "instructionsFile": "affected.md",
+      "variableTemplates": {
+        "goal": "{goal}",
+        "context": "## Prior: needs & scope\n{prior.needs}\n\n## Original context\n{context}\n\n## Constraints\n{constraints}\n\n## Repository / scope\n{repo}"
+      }
+    },
+    {
+      "id": "relationships",
+      "order": 3,
+      "title": "Relationships and dependencies",
+      "description": "Coupling, ordering constraints, contracts between components, and external deps.",
+      "templateId": "planning.v1",
+      "instructionsFile": "relationships.md",
+      "variableTemplates": {
+        "goal": "{goal}",
+        "context": "## Prior: needs\n{prior.needs}\n\n## Prior: affected areas\n{prior.affected}\n\n## Original context\n{context}\n\n## Constraints\n{constraints}"
+      }
+    },
+    {
+      "id": "synthesize",
+      "order": 4,
+      "title": "Execution plan",
+      "description": "Consolidate into milestones, verification, and next actions.",
+      "templateId": "shared.planner.v1",
+      "instructionsFile": "synthesize.md",
+      "variableTemplates": {
+        "goal": "{goal}",
+        "context": "## Needs\n{prior.needs}\n\n## Affected areas\n{prior.affected}\n\n## Relationships / dependencies\n{prior.relationships}\n\n## Extra context\n{context}",
+        "constraints": "{constraints}",
+        "repo": "{repo}"
+      }
+    }
+  ]
+}

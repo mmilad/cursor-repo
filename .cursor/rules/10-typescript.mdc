@@ -1,0 +1,20 @@
+---
+description: TypeScript and TSX conventions for this repo
+globs: "**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+# TypeScript
+
+- Prefer explicit types on public APIs; infer locals where it stays clear.
+- Handle errors deliberately — avoid empty `catch` blocks; log or rethrow with context.
+- Keep components and modules focused; extract helpers when logic repeats.
+
+```typescript
+// Prefer narrow errors at boundaries
+async function load(): Promise<Data> {
+  const res = await fetch("/api/data");
+  if (!res.ok) throw new Error(`load failed: ${res.status}`);
+  return res.json() as Promise<Data>;
+}
+```

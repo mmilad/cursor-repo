@@ -1,0 +1,24 @@
+---
+description: Core project standards — scope, safety, and quality (language-agnostic)
+alwaysApply: true
+---
+
+# Core standards
+
+## Scope and edits
+
+- Change only what the task requires. Avoid drive-by refactors and unrelated files.
+- Read nearby code before editing; match naming, types, imports, and documentation level already in the tree.
+
+## Source of truth
+
+- Prefer `AGENTS.md` and `README` for how to run, test, and lint this repo. If they disagree with assumptions, follow the repo docs.
+
+## Safety
+
+- Do not commit secrets, tokens, or real credentials. Use placeholders and `.env.example` patterns the project already uses.
+
+## Quality
+
+- If the project defines tests or lint, run them when finishing a change and fix failures you introduce.
+- Prefer small, reviewable diffs with clear intent over large mixed changes.

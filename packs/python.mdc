@@ -1,0 +1,18 @@
+---
+description: Python conventions for this repo
+globs: "**/*.{py,pyi}"
+alwaysApply: false
+---
+
+# Python
+
+- Follow existing layout (src layout, tests mirror, etc.); do not invent a new structure without cause.
+- Prefer explicit exceptions over bare `except:`; log or wrap with context at boundaries.
+- Type hints on public functions and modules where the codebase already uses them.
+
+```python
+def fetch_data() -> dict:
+    resp = requests.get("/api/data", timeout=30)
+    resp.raise_for_status()
+    return resp.json()
+```
