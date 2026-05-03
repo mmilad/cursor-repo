@@ -1,4 +1,4 @@
-import type { JobTemplate } from "../cursor/types.js";
+import type { JobTemplate } from "../controller/types.js";
 import { customPlannerTemplate } from "../shared/planner/planner-template.js";
 import { planningTemplate } from "./planning.js";
 

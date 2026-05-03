@@ -1,4 +1,4 @@
-import type { JobTemplate } from "../cursor/types.js";
+import type { JobTemplate } from "../controller/types.js";
 
 /** Use for task breakdown before implementation; extend the registry with your own templates. */
 export const planningTemplate: JobTemplate = {

@@ -1,5 +1,5 @@
 /**
- * @module cursor/controller
+ * @module controller
  *
  * **CursorController** is the façade over `@cursor/sdk` for this repo. It delegates to small
  * modules so each file has one job:

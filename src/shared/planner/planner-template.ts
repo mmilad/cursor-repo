@@ -1,4 +1,4 @@
-import type { JobTemplate } from "../../cursor/types.js";
+import type { JobTemplate } from "../../controller/types.js";
 
 /**
  * Org-wide planner prompt reused across managed checkouts. Registered in

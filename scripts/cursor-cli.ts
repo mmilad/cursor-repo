@@ -6,9 +6,10 @@
  *   npm run cursor -- ask -- "What does this repo do?"
  *   npm run cursor -- template planning --goal "Add health check endpoint" [--cloud]
  */
-import { CursorController } from "../src/cursor/controller.js";
+import { CursorController } from "../src/controller/index.js";
 import { CursorAgentError } from "@cursor/sdk";
 import { getTemplate } from "../src/templates/index.js";
+import { getWorkflow, workflows } from "../src/workflows/registry.js";
 
 const repoRoot = process.cwd();
 
@@ -18,6 +19,7 @@ function usage(): never {
   npm run cursor -- list runs <agentId> [--cloud]
   npm run cursor -- ask -- "<message>"
   npm run cursor -- template <templateId> [--goal "..."] [--context "..."] [--constraints "..."] [--scope "..."] [--cloud] [--stream]
+  npm run cursor -- workflow brainstorm --goal "..." [--constraints "..."] [--scope "..."]
   (templateId: planning | planning.v1 | planner | shared.planner.v1)
   (--repo with --cloud: git URL; --scope: free-text repo/scope hint for local planner)
 
@@ -143,6 +145,38 @@ async function main() {
         if (!stream) console.log(JSON.stringify(result, null, 2));
         else console.log("\n", JSON.stringify(result, null, 2));
         if (result.status === "error") process.exitCode = 2;
+      }
+    } catch (e) {
+      if (e instanceof CursorAgentError) {
+        console.error(e.message);
+        process.exitCode = 1;
+      } else throw e;
+    }
+    return;
+  }
+
+  if (cmd === "workflow") {
+    const id = args.shift();
+    if (!id) usage();
+    if (!getWorkflow(id)) {
+      console.error(`Unknown workflow id: ${id}`);
+      process.exit(1);
+    }
+    const goal = optValue("--goal", args);
+    if (!goal?.trim()) {
+      console.error("workflow requires --goal");
+      process.exit(1);
+    }
+    const constraints = optValue("--constraints", args);
+    const scope = optValue("--scope", args);
+    try {
+      if (id === "brainstorm") {
+        const out = await workflows.brainstorm(controller, { goal, constraints, scope });
+        console.log(JSON.stringify(out, null, 2));
+        if (out.converge.status === "error") process.exitCode = 2;
+      } else {
+        console.error(`Workflow ${id} is not wired in the CLI yet.`);
+        process.exit(1);
       }
     } catch (e) {
       if (e instanceof CursorAgentError) {
