@@ -2,5 +2,8 @@ node_modules/
 .env
 *.log
 
+# PR-agent loop runtime state (machine-local)
+.agent-state.json
+
 # Local clones only — never commit (see docs/managed-projects.md)
 projects/
