@@ -1,0 +1,20 @@
+[Unit]
+Description=Cursor PR Agent Loop
+Documentation=https://github.com/mmilad/cursor-universal-template
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/cursor-universal-template
+EnvironmentFile=/home/pi/cursor-universal-template/.env
+ExecStart=/usr/bin/node /usr/bin/node_modules/.bin/tsx scripts/pr-agent-cli.ts daemon
+Restart=on-failure
+RestartSec=30
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=cursor-pr-agent
+
+[Install]
+WantedBy=multi-user.target

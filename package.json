@@ -3,13 +3,19 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "cursor": "tsx scripts/cursor-cli.ts"
+    "cursor": "tsx scripts/cursor-cli.ts",
+    "pr-agent": "tsx scripts/pr-agent-cli.ts",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "dotenv": "^16.4.7",
     "@cursor/sdk": "^1.0.12",
     "@types/node": "^22.10.0",
+    "dotenv": "^16.4.7",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@octokit/rest": "^22.0.1",
+    "croner": "^10.0.1"
   }
 }
