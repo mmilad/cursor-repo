@@ -1,0 +1,33 @@
+{
+  "name": "cursor-pr-agent-loop",
+  "version": "1.0.0",
+  "description": "Autonomous PR review, merge, and follow-up agent loop using the Cursor SDK",
+  "type": "module",
+  "bin": {
+    "pr-agent": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "cli": "tsx src/cli.ts",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cursor/sdk": "latest",
+    "@octokit/rest": "^21.0.0",
+    "chalk": "^5.3.0",
+    "croner": "^9.0.0",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

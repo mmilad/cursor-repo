@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  pr-agent:
+    build: .
+    image: cursor-pr-agent:latest
+    restart: unless-stopped
+    environment:
+      # Required – provide via a .env file or Docker secrets
+      CURSOR_API_KEY: ${CURSOR_API_KEY}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      GITHUB_REPOS: ${GITHUB_REPOS}
+
+      # Optional tuning (sensible defaults shown)
+      CURSOR_MODEL: ${CURSOR_MODEL:-composer-2}
+      POLL_INTERVAL_MINUTES: ${POLL_INTERVAL_MINUTES:-5}
+      MAX_CONCURRENT_AGENTS: ${MAX_CONCURRENT_AGENTS:-3}
+      AUTO_MERGE: ${AUTO_MERGE:-false}
+      MERGE_METHOD: ${MERGE_METHOD:-squash}
+      REQUIRED_APPROVALS: ${REQUIRED_APPROVALS:-1}
+      TASK_LABEL: ${TASK_LABEL:-agent-task}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+    volumes:
+      # Persist state file across restarts
+      - agent-state:/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+volumes:
+  agent-state:
